@@ -1,0 +1,28 @@
+{
+  "name": "minsung_bot",
+  "version": "1.0.0",
+  "description": "민성 봇",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jms080809/MDB.js.git"
+  },
+  "keywords": [
+    "MinsungDiscord"
+  ],
+  "author": "jms080809",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jms080809/MDB.js/issues"
+  },
+  "homepage": "https://github.com/jms080809/MDB.js#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.6.0",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.23.1",
+    "discord.js": "^13.1.0"
+  }
+}
