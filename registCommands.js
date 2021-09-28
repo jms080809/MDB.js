@@ -9,7 +9,7 @@ const commandFiles = fs
   .filter((file) => file.endsWith(".js"));
 
 module.exports = {
-  registCommands(clientId) {
+  async registCommands(clientId) {
     for (const file of commandFiles) {
       const command = require(`./commands/${file}`);
       commands.push(command.data.toJSON());
@@ -19,7 +19,7 @@ module.exports = {
 
     (async () => {
       try {
-        await rest.put(Routes.applicationCommands(config.applicationId), {
+        await rest.put(Routes.applicationCommands(clientId), {
           body: commands,
         });
         console.log("Slash(/) Commands successfully registed!");

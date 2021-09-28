@@ -18,7 +18,7 @@ for (const file of commandFiles) {
 }
 
 //log "Bot Ready!" when bot ready once
-registCommands(config.applicationId);
+registCommands(parseInt(config.applicationId));
 
 client.once("ready", () => {
   console.log("Bot Ready!");
@@ -31,6 +31,9 @@ client.on("interactionCreate", async (interaction) => {
   if (!command) return;
   // if interaction doesn't have in command list or not command do nothing
   try {
+    console.log(
+      `${interaction.createdAt} "${interaction.commandName}" by ${interaction.user.tag}  Channel: ${interaction.channel.name}/${interaction.channelId}`
+    );
     await command.execute(interaction);
   } catch (error) {
     console.error(error);
