@@ -35,14 +35,32 @@ module.exports = {
         interaction.reply({
           embeds: [
             {
-              title: "COVID-19 PROGRESS",
-              image: {
+              color: "#8A0808",
+              title: "**GLOBAL COVID-19 PROGRESS**",
+              thumbnail: {
                 url: "https://dalkora.com/data/file/town/214317732_VpsOgZ9T_302cb21456b2b88a76a27eac6cedcb5c474fd3f4.jpg",
               },
               fields: [
-                { name: "Infected Peoples - 감염된 사람들 :", value: data.Infected },
-                { name: "Died Peoples - 죽은 사람들 :", value: data.Deaths },
-                { name: "Recovered Peoples - 치료된 사람들 :", value: data.Recovered },
+                {
+                  name: "_**Infected Peoples - 감염된 사람들 :**_",
+                  value: data.Infected,
+                  inline: true,
+                },
+                {
+                  name: "_**Died Peoples - 죽은 사람들 :**_",
+                  value: data.Deaths,
+                  inline: true,
+                },
+                {
+                  name: "_**Recovered Peoples - 치료된 사람들 :**_",
+                  value: data.Recovered,
+                  inline: true,
+                },
+                {
+                  name: "Get Sources Site",
+                  value:
+                    "[Click Here!](https://www.worldometers.info/coronavirus/)",
+                },
               ],
             },
           ],
