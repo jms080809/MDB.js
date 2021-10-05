@@ -1,10 +1,12 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const htmlParser = require("node-html-parser");
 const axios = require("axios").default;
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("covid")
     .setDescription("Covid-19 info"),
+
   async execute(interaction) {
     try {
       // https://www.worldometers.info/coronavirus/
@@ -19,6 +21,7 @@ module.exports = {
             pre: true,
           },
         });
+
         const data = {
           Infected: html
             .querySelectorAll("div#maincounter-wrap")[0]
@@ -32,6 +35,7 @@ module.exports = {
             .querySelectorAll("div#maincounter-wrap")[2]
             .querySelector("span").childNodes[0].rawText,
         };
+
         interaction.reply({
           embeds: [
             {
@@ -42,22 +46,19 @@ module.exports = {
               },
               fields: [
                 {
-                  name: "_**Infected Peoples - 감염된 사람들 :**_",
+                  name: "_**Infected Peoples - 확진판정 :**_",
                   value: data.Infected,
-                  inline: true,
                 },
                 {
-                  name: "_**Died Peoples - 죽은 사람들 :**_",
+                  name: "_**Died Peoples - 사망 :**_",
                   value: data.Deaths,
-                  inline: true,
                 },
                 {
-                  name: "_**Recovered Peoples - 치료된 사람들 :**_",
+                  name: "_**Recovered Peoples - 완치 :**_",
                   value: data.Recovered,
-                  inline: true,
                 },
                 {
-                  name: "Get Sources Site",
+                  name: "Resource Site",
                   value:
                     "[Click Here!](https://www.worldometers.info/coronavirus/)",
                 },

@@ -1,10 +1,10 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const { registCommands } = require("./registCommands.js");
+const config = require("./settings.json");
 const client = new Discord.Client({
   intents: [Discord.Intents.FLAGS.GUILDS],
 });
-const config = require("./settings.json");
 
 client.commands = new Discord.Collection();
 
@@ -18,10 +18,10 @@ for (const file of commandFiles) {
 }
 
 //log "Bot Ready!" when bot ready once
-registCommands(parseInt(config.applicationId));
 
 client.once("ready", () => {
   console.log("Bot Ready!");
+  registCommands(config.applicationId);
 });
 
 // slash command interaction
@@ -32,7 +32,7 @@ client.on("interactionCreate", async (interaction) => {
   // if interaction doesn't have in command list or not command do nothing
   try {
     console.log(
-      `${interaction.createdAt} "${interaction.commandName}" by ${interaction.user.tag}  Channel: ${interaction.channel.name}/${interaction.channelId}`
+      `${interaction.createdAt} "${interaction.commandName}" by ${interaction.user.tag} Server: ${interaction.guild.name}/${interaction.guild.id} Channel: ${interaction.channel.name}/${interaction.channelId}`
     );
     await command.execute(interaction);
   } catch (error) {
@@ -40,5 +40,4 @@ client.on("interactionCreate", async (interaction) => {
     return interaction.reply("not command found!");
   }
 });
-
 client.login(config.token);
